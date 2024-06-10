@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { userSignUpType } from "../types/types";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAyhaVuef4xfOQK3ZOZwx3wKP0VYQncEPc",
@@ -13,7 +14,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app)
 
-export { auth }
+const userData = auth.currentUser
+
+
+export { auth, userData }
