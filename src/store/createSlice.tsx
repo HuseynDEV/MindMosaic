@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, userData } from '../firebase/firebaseConfig'
 
 type userInfo = {
@@ -8,36 +8,35 @@ type userInfo = {
 }
 
 type InitialStateType = {
-    userInfo: userInfo
+    userInfo: userInfo,
+    data:string
 }
 
 const initialState: InitialStateType = {
     userInfo: {
-        displayName: 'awdawda',
-        email: 'awdawd'
-    }
+        displayName: '',
+        email: ''
+    },
+    data:''
 }
+
 
 export const UserSlice = createSlice({
     name: "user",
     initialState,
-    reducers: { 
+    reducers: {
         registerUser: (state, action: PayloadAction<{ user: userInfo, id: string }>) => {
             console.log(action.payload.user, 'user');
             localStorage.setItem('accessToken', action.payload.id);
             state.userInfo = action.payload.user; // Direct mutation
         },
-        
-
-        // fetchUser: (state) => {
-        //     // Ensure that fetchUser updates the state correctly
-        //     console.log(state.userInfo, 'statee');
-        //     return state;
-        // }
+        logoutUser: (state) => {
+            state.userInfo={displayName:"", email:""}
+        }
     }
 })
 
 
-export default UserSlice.reducer
 
-export const { registerUser } = UserSlice.actions
+export const { registerUser, logoutUser } = UserSlice.actions
+export default UserSlice.reducer

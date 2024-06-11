@@ -25,7 +25,6 @@ const Register = () => {
     const navigate = useNavigate()
     // const person = useAppSelector(state => state.user.userInfo)
 
-
     const typeSchema = z.object({
         username: z.string({
             required_error: 'Name is required'
@@ -42,7 +41,6 @@ const Register = () => {
             message: "Password must be match"
         })
     })
-
 
     const mutation = useMutation({
         mutationFn: signUp,
@@ -118,7 +116,7 @@ const Register = () => {
 
                         </div>
                         <button type="submit" className="w-full h-[40px] bg-black text-white rounded-md mt-4">Sign Up</button>
-                        <div className="text-center mt-3">Already have a account? <Link to='/auth/login' className="text-blue-600">Login</Link> </div>
+                        <div className="text-center mt-3">Already have a account? <Link to='/auth/login' className="text-blue-600">Sign In</Link> </div>
                     </form>
                 </div>
 
