@@ -13,6 +13,8 @@ export const signUp = async ({ username, email, password }: userSignUpType) => {
 
 export const signIn = async ({ email, password }: userSignInType) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log(userCredential)
-    return userCredential
+    const user = userCredential.user
+    const accessToken = await user.getIdToken()
+    return { user, accessToken }
+
 }

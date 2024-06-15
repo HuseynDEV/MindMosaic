@@ -1,11 +1,23 @@
-export type userSignUpType = {
-    username: string,
-    email: string,
-    password: string,
-    // displayName?: string
+export type storeType = {
+    user: {
+        name: string | null,
+        email: string | null
+    },
+    loading: boolean,
+    error: boolean
 }
 
-export type userSignInType={
-    email:string,
-    password:string
+export type UserType = {
+    email: string,
+    password: string,
+    username: string,
+    navigate?: (path: string) => void
 }
+
+export type accountTypeID = {
+    accessToken: string,
+    user: {
+        displayName: string,
+        email: string
+    }
+} 
